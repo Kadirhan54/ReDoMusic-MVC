@@ -1,7 +1,17 @@
+using ReDoMusic.Shared.Services;
+using ReDoMusic.Shared;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+// Adding RequestCountService with dependency injection.
+builder.Services.AddSingleton<RequestCountService>();
+
+// Both the same thing but above one preferred.
+builder.Services.AddSharedServices();
+//builder.Services.AddSingleton<GuidGeneratorService>();
 
 var app = builder.Build();
 

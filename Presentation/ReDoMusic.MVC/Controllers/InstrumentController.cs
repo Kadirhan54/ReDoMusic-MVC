@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ReDoMusic.Persistence.Contexts;
+using ReDoMusic.Shared.Services;
 
 namespace ReDoMusic.MVC.Controllers
 {
@@ -7,14 +8,25 @@ namespace ReDoMusic.MVC.Controllers
     {
         private readonly ReDoMusicDbContext _dbContext;
 
-        public InstrumentController()
+        // This two services experimental services for dependency injection topic.
+        private readonly RequestCountService _requestService;
+        private readonly GuidGeneratorService _guidGeneratorService;
+
+        public InstrumentController(RequestCountService requestService, GuidGeneratorService guidGeneratorService)
         {
+            _requestService = requestService;
+            _guidGeneratorService = guidGeneratorService;
             _dbContext = new();
         }
 
         public IActionResult Index() //All Instruments will be shown
         {
             var products = _dbContext.Instruments.ToList();
+
+            _requestService.RequestCount += 1;
+
+            // Experimenting DI
+            Guid guid = _guidGeneratorService.Generate();
 
             return View(products);
         }
@@ -23,6 +35,8 @@ namespace ReDoMusic.MVC.Controllers
         public IActionResult Add()
         {
             var brands = _dbContext.Brands.ToList();
+
+            _requestService.RequestCount += 1;
 
             return View(brands);
         }
@@ -46,6 +60,8 @@ namespace ReDoMusic.MVC.Controllers
             _dbContext.Instruments.Add(instrument);
 
             _dbContext.SaveChanges();
+
+            _requestService.RequestCount += 1;
 
             return RedirectToAction("add");
         }
