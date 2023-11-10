@@ -13,7 +13,7 @@ namespace ReDoMusic.Persistence
         {
             ConfigurationManager configurationManager = new();
 
-            string path = $"{Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName}\\ReDoMusic\\Infrastructure\\ReDoMusic.Persistence";
+            string path = $"{Directory.GetParent(Directory.GetCurrentDirectory()).Parent.Parent.FullName}\\ReDoMusic-MVC\\Infrastructure\\ReDoMusic.Persistence";
 
             configurationManager.SetBasePath(path);
             configurationManager.AddJsonFile("PrivateInformations.json");
