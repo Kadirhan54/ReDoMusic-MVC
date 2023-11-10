@@ -12,14 +12,13 @@ namespace ReDoMusic.MVC.Controllers
         private readonly ReDoMusicDbContext _dbContext;
 
         private readonly PasswordGenerator _passwordGenerator;
-        private readonly ITextService _textService;
 
 
 
-        public InstrumentController(PasswordGenerator passwordGenerator, ITextService textService)
+
+        public InstrumentController(PasswordGenerator passwordGenerator)
         {
             _passwordGenerator = passwordGenerator;
-            _textService = textService;
 
             _dbContext = new();
         }
