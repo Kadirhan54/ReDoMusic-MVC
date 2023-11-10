@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\ReDoMusic.Domain\ReDoMusic.Domain.csproj" />
     <ProjectReference Include="..\..\Infrastructure\ReDoMusic.Persistence\ReDoMusic.Persistence.csproj" />
+    <ProjectReference Include="..\..\Shared\ReDoMusic.Shared\ReDoMusic.Shared.csproj" />
   </ItemGroup>
 
 </Project>
